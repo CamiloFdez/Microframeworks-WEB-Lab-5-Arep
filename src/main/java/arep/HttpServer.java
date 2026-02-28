@@ -1,13 +1,12 @@
 package arep;
 import java.net.*;
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+
+import arep.lab5.WebFramework;
  
 public class HttpServer {
-
-    static Map<String, WebMethod> endPoints = new HashMap<>();
  
     public static void main(String[] args) throws IOException, URISyntaxException {
         ServerSocket serverSocket = null;
@@ -61,7 +60,7 @@ public class HttpServer {
                 }
             }
  
-            WebMethod currentwm = endPoints.get(reqpath);
+            WebMethod currentwm = WebFramework.getRoute(reqpath);
 
             if (currentwm != null) {
                 outputLine
@@ -75,7 +74,7 @@ public class HttpServer {
                         + "<title>Backend Service</title>\n"
                         + "</head>"
                         + "<body>"
-                        + currentwm.execute()
+                        + currentwm.execute(new HttpRequest(), new HttpResponse())
                         + "</body>"
                         + "</html>";
  
@@ -105,6 +104,6 @@ public class HttpServer {
     }
 
     public static void get(String path, WebMethod wm) {
-        endPoints.put(path, wm);
+        WebFramework.get(path, wm);
     }
 }
