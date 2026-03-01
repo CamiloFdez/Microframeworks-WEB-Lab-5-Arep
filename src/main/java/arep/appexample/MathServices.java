@@ -8,7 +8,8 @@ import java.net.URISyntaxException;
 import arep.framework.HttpServer;
 
 public class MathServices {
-    public static void main(String[] args) throws IOException, URISyntaxException {
+
+    public static void register(String[] args) throws IOException, URISyntaxException {
 
         HttpServer.staticfiles("webroot/public");
 
