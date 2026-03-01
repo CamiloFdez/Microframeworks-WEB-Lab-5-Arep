@@ -1,4 +1,4 @@
-package arep.lab5;
+package arep.internal;
 
 import java.net.MalformedURLException;
 import java.net.URI;

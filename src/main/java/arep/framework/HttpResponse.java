@@ -1,4 +1,4 @@
-package arep;
+package arep.framework;
 
 public class HttpResponse {
 

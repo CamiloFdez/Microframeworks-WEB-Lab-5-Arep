@@ -1,10 +1,8 @@
-package arep;
+package arep.framework;
 import java.net.*;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-
-import arep.lab5.WebFramework;
  
 public class HttpServer {
 

@@ -1,4 +1,4 @@
-package arep.lab5;
+package arep.internal;
 import java.io.*;
 import java.net.*;
 

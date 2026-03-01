@@ -1,8 +1,7 @@
-package arep.lab5;
+package arep.framework;
 
 import java.util.HashMap;
 import java.util.Map;
-import arep.WebMethod;
 
 public class WebFramework {
 

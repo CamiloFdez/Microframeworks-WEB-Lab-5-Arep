@@ -1,11 +1,11 @@
 package arep.appexample;
 
-import static arep.HttpServer.get;
+import static arep.framework.HttpServer.get;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import arep.HttpServer;
+import arep.framework.HttpServer;
 
 public class MathServices {
     public static void main(String[] args) throws IOException, URISyntaxException {

@@ -1,8 +1,11 @@
 package arep;
 
+import static arep.framework.WebFramework.get;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import static arep.lab5.WebFramework.get;
+
+import arep.framework.HttpServer;
 
 
 @SpringBootApplication
