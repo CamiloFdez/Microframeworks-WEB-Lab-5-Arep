@@ -14,9 +14,9 @@ public class HttpServer {
 
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(35000);
+            serverSocket = new ServerSocket(8080);
         } catch (IOException e) {
-            System.err.println("Could not listen on port: 35000.");
+            System.err.println("Could not listen on port: 8080.");
             System.exit(1);
         }
         Socket clientSocket = null;
