@@ -9,6 +9,9 @@ import arep.lab5.WebFramework;
 public class HttpServer {
  
     public static void main(String[] args) throws IOException, URISyntaxException {
+
+        Map<String, String> parameters = new HashMap<>();
+
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(35000);
@@ -53,6 +56,18 @@ public class HttpServer {
                     System.out.println("Path: " + reqpath);
  
                     isFirstLine = false;
+
+                    String query = uripath.getQuery();
+
+                    if (query != null) {
+                        String[] params = query.split("&");
+                        for (String param : params) {
+                            String[] keyValue = param.split("=");
+                            if (keyValue.length == 2) {
+                                parameters.put(keyValue[0], keyValue[1]);
+                            }
+                        }
+                    }
                 }
  
                 if (!in.ready()) {
@@ -60,6 +75,8 @@ public class HttpServer {
                 }
             }
  
+            HttpRequest request = new HttpRequest(parameters);
+
             WebMethod currentwm = WebFramework.getRoute(reqpath);
 
             if (currentwm != null) {
@@ -74,7 +91,7 @@ public class HttpServer {
                         + "<title>Backend Service</title>\n"
                         + "</head>"
                         + "<body>"
-                        + currentwm.execute(new HttpRequest(), new HttpResponse())
+                        + currentwm.execute(request, null)
                         + "</body>"
                         + "</html>";
  
