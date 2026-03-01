@@ -14,6 +14,7 @@ public class Lab5Application {
         get("/pi", (req, res) -> String.valueOf(Math.PI));
         get("/euler", (req, res) -> String.valueOf(Math.E));
 
+		HttpServer.staticfiles("webroot/public");
     }
 
 }

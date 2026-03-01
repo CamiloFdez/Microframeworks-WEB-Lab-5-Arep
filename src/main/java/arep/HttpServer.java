@@ -7,10 +7,13 @@ import java.util.Map;
 import arep.lab5.WebFramework;
  
 public class HttpServer {
+
+    private static String staticFilesPath = "";
  
     public static void main(String[] args) throws IOException, URISyntaxException {
 
         Map<String, String> parameters = new HashMap<>();
+
 
         ServerSocket serverSocket = null;
         try {
@@ -96,23 +99,31 @@ public class HttpServer {
                         + "</html>";
  
             } else {
-                outputLine
-                        = "HTTP/1.1 200 OK\n\r"
-                        + "Content-Type: text/html\n\r"
-                        + "\n\r"
-                        + "<!DOCTYPE html>"
-                        + "<html>"
-                        + "<head>"
-                        + "<meta charset=\"UTF-8\">"
-                        + "<title>Title of the document</title>\n"
-                        + "</head>"
-                        + "<body>"
-                        + "My Web Site"
-                        + "</body>"
-                        + "</html>";
+                String filePath = staticFilesPath + reqpath;
+
+                InputStream fileStream = HttpServer.class.getResourceAsStream("/" + filePath);
+
+                if (fileStream != null) {
+                    BufferedReader fileReader = new BufferedReader(new InputStreamReader(fileStream));
+                    StringBuilder fileContent = new StringBuilder();
+                    String line;
+
+                    while ((line = fileReader.readLine()) != null) {
+                        fileContent.append(line).append("\n");
+                    }
+
+                    outputLine =
+                        "HTTP/1.1 200 OK\r\n" +
+                        "Content-Type: text/html\r\n\r\n" +
+                        fileContent.toString();
+                } else {
+                    outputLine =
+                        "HTTP/1.1 404 Not Found\r\n\r\n" +
+                        "File not found";
+                }
             }
-            out.println(outputLine);
  
+            out.println(outputLine);
             out.close();
             in.close();
             clientSocket.close();
@@ -122,5 +133,10 @@ public class HttpServer {
 
     public static void get(String path, WebMethod wm) {
         WebFramework.get(path, wm);
+    }
+
+    
+    public static void staticfiles(String path) {
+        staticFilesPath = path;
     }
 }
