@@ -144,7 +144,9 @@ Hello with query parameter:
 
 Index.html:
 
-![image](https://github.com/CamiloFdez/Microframeworks-WEB-Lab-5-Arep/blob/main/images/3puntoIndex.PNG)
+![image](https://github.com/CamiloFdez/Microframeworks-WEB-Lab-5-Arep/blob/main/images/newIndex.PNG)
+
+In here we can see the evidence of static files and also we change the index so it shows the endpoints and how to use them and also if you click on the endpoints it will take you to the corresponding endpoint.
 
 This will happen if we enter an invalid URL:
 
